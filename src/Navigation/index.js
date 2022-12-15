@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import HomeScreen from "../Home";
 import LoginScreen from "../Login";
 
@@ -34,18 +34,6 @@ const HomeStackNavigator = () => {
     )
   }
 
-  const LoginStackNavigator = () => {
-    return (
-      <Stack.Navigator screenOptions={{
-        headerShown: false,
-      }}>
-        <Stack.Screen name="Login" component={LoginScreen} />
-      </Stack.Navigator>
-    )
-  }
-
-  
-  
 export default function Navigator() {
   return (
     <NavigationContainer>
@@ -57,12 +45,3 @@ export default function Navigator() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "blue",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
