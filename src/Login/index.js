@@ -1,5 +1,13 @@
 import React from "react";
-import { View, TextInput, Button, StyleSheet, Text } from "react-native";
+import {
+  View,
+  TextInput,
+  Button,
+  StyleSheet,
+  Text,
+  Touchable,
+  TouchableOpacity,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 const LoginScreen = () => {
@@ -20,15 +28,22 @@ const LoginScreen = () => {
         >
           <View style={styles.form}>
             <Text style={styles.formTitle}>TABLER</Text>
-            <TextInput name="email" placeholder="Email" style={styles.input} />
+            <View style={styles.inputGroup}>
+              <TextInput
+                name="email"
+                placeholder="Email"
+                style={styles.input}
+              />
 
-            <TextInput
-              name="password"
-              placeholder="Password"
-              style={styles.input}
-            />
-
-            <Button title="Login" />
+              <TextInput
+                name="password"
+                placeholder="Password"
+                style={styles.input}
+              />
+            </View>
+            <TouchableOpacity style={styles.submitButton}>
+              <Text style={styles.buttonText}>Submit</Text>
+            </TouchableOpacity>
           </View>
         </LinearGradient>
       </View>
@@ -47,15 +62,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 5,
     marginTop: 10,
-    elevation: 5,
-    shadowOpacity: 0.8,
-    shadowColor: "rgba(0, 0, 0, 0.95)",
-    shadowOffset: { width: 100, height: 150 },
-    shadowRadius: 5,
+    borderColor: "light grey",
+    borderWidth: 0.9,
   },
   form: {
     backgroundColor: "white",
-    justifyContent: "center",
+    justifyContent: "space-around",
     padding: 20,
     borderRadius: 5,
     width: "80%",
@@ -65,6 +77,7 @@ const styles = StyleSheet.create({
     shadowColor: "rgba(0, 0, 0, 0.95)",
     shadowOffset: { width: 100, height: 150 },
     shadowRadius: 5,
+    height: "45%",
   },
   formTitle: {
     color: "#3c84dc",
@@ -73,6 +86,28 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 20,
   },
+  submitButton: {
+    backgroundColor: "#3c84dc",
+    height: 44,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
+    width: 70,
+    marginTop: 10,
+    width: "90%",
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 17,
+  },
+  inputGroup: {
+    width: "100%",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  }
 });
 
 export default LoginScreen;
