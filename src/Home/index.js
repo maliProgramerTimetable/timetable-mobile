@@ -41,6 +41,36 @@ const HomeScreen = () => {
             title: '9-6 razred',
             summary: 'Biologija - OŠ Travnik',
           },
+          {
+            start: '2022-12-18 08:00:00',
+            end: '2022-12-18 08:45:00',
+            title: '9-2 razred',
+            summary: 'Biologija - OŠ Travnik',
+          },
+          {
+              start: '2022-12-18 09:00:00',
+              end: '2022-12-18 09:45:00',
+              title: '9-1 razred',
+              summary: 'Biologija - OŠ Travnik',
+            },
+            {
+              start: '2022-12-18 10:00:00',
+              end: '2022-12-18 10:45:00',
+              title: '9-3 razred',
+              summary: 'Biologija - OŠ Travnik',
+            },
+            {
+                start: '2022-12-18 11:00:00',
+                end: '2022-12-18 11:45:00',
+                title: '9-5 razred',
+                summary: 'Biologija - OŠ Travnik',
+              },
+              {
+                  start: '2022-12-18 12:00:00',
+                  end: '2022-12-18 12:45:00',
+                  title: '9-6 razred',
+                  summary: 'Biologija - OŠ Travnik',
+                },
   ]);
 
   const eventClicked = (event) => {
@@ -56,7 +86,14 @@ const HomeScreen = () => {
           width={width}
           size={60}
           initDate={'2022-12-17'}
-  
+          style = {{
+            container: {
+              backgroundColor: 'red'
+            },
+            contentStyle:{
+              backgroundColor: 'yellow'
+            }
+          }}
           scrollToFirst
         />
       </View>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   TextInput,
@@ -7,12 +7,22 @@ import {
   Text,
   Touchable,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { storage } from "../utils/storage";
 
-const LoginScreen = () => {
-  const onSubmit = (data) => {
-    // Handle login here
+const LoginScreen = ({ route }) => {
+  const { loggedIn, setLoggedIn } = route?.params
+  console.log(route.params, "roru")
+  const [isLoginInProgress, setIsLoginInProgress] = useState(false);
+
+  const onSubmit = () => {
+      setIsLoginInProgress(true);
+      setTimeout(()=>{
+        setIsLoginInProgress(false)
+       setLoggedIn(true)
+      }, 2000)
   };
 
   return (
@@ -33,16 +43,21 @@ const LoginScreen = () => {
                 name="email"
                 placeholder="Email"
                 style={styles.input}
+                autoCapitalize="none"
+    jas
               />
 
               <TextInput
                 name="password"
                 placeholder="Password"
                 style={styles.input}
+                secureTextEntry={true}
+                autoCapitali
               />
             </View>
-            <TouchableOpacity style={styles.submitButton}>
-              <Text style={styles.buttonText}>Submit</Text>
+            <TouchableOpacity style={styles.submitButton} onPress={onSubmit}>
+              { isLoginInProgress ? <ActivityIndicator color={"white"} /> : 
+              <Text style={styles.buttonText}>Prijavi se</Text>}
             </TouchableOpacity>
           </View>
         </LinearGradient>
@@ -62,7 +77,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 5,
     marginTop: 10,
-    borderColor: "light grey",
+    borderColor: "#E0E0E0",
     borderWidth: 0.9,
   },
   form: {
@@ -72,11 +87,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: "80%",
     alignItems: "center",
-    elevation: 10,
-    shadowOpacity: 0.8,
-    shadowColor: "rgba(0, 0, 0, 0.95)",
-    shadowOffset: { width: 100, height: 150 },
-    shadowRadius: 5,
     height: "45%",
   },
   formTitle: {
