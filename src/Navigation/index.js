@@ -4,6 +4,8 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerI
 import { View } from "react-native";
 import HomeScreen from "../Home";
 import LoginScreen from "../Login";
+import { storage } from "../utils/storage";
+import { useEffect, useState } from "react";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator()
@@ -17,7 +19,6 @@ function AppDrawerContent(props){
          {/* here's where you put your logout drawer item*/}
          <DrawerItem 
            label="Odjavi se"
-          //  onPress={}
            style={{flex:1,justifyContent:'flex-end', marginBottom: 20}}
          />
        </View>
@@ -25,22 +26,21 @@ function AppDrawerContent(props){
    );
  }
 
-const HomeStackNavigator = () => {
+const HomeStackNavigator = ({ route }) => {
     return (
-        <Drawer.Navigator initialRouteName="Home" drawerContent={props=><AppDrawerContent {...props} />} >
-        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Navigator initialRouteName="Home" drawerContent={props=><AppDrawerContent {...props} />} screenOptions={{ headerShadowVisible: false }} >
+        <Drawer.Screen name="Tabler" component={HomeScreen} />
         <Drawer.Screen name="Profil" component={HomeScreen} />
       </Drawer.Navigator>
     )
   }
 
-export default function Navigator() {
+export default function Navigator({ loggedIn, setLoggedIn }) {
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Login" component={LoginScreen}options={{ headerShown: false}} />
-            <Stack.Screen name="Home" component={HomeStackNavigator} options={{ headerShown: false}}/>
-
+        <Stack.Navigator initialRouteName="Login">
+        {!loggedIn ? <Stack.Screen initialParams={{ loggedIn, setLoggedIn }} name="Login" component={LoginScreen}options={{ headerShown: false}} />  : 
+        <Stack.Screen initialParams={{ loggedIn, setLoggedIn }} name="Pocetna" component={HomeStackNavigator} options={{ headerShown: false, headerShadowVisible: false}}/>}
         </Stack.Navigator>
     </NavigationContainer>
   );
