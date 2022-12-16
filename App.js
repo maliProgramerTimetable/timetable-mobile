@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet,LogBox} from 'react-native';
 import HomeScreen from './src/Home';
 import LoginScreen from './src/Login';
 import Navigator from './src/Navigation';
+
+LogBox.ignoreAllLogs(); 
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false)
